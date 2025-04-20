@@ -16,3 +16,8 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
 # [Optional] Uncomment this section to install additional packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+RUN wget -qO -https://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key add -
+RUN wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list https://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
+RUN apt update -y
+RUN apt-get install -y vulkan-sdk
